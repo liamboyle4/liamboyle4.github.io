@@ -246,7 +246,7 @@
                                     <p>The final part of this project involved programming a spectrogram on our Arduino to display the frequency response of the output on our small OLED screen. The simplest approach would have been to display the strength of the signals from the three filters. However, we opted for a more thorough approach and performed a real-time Fourier analysis. After testing our Arduino, we found that it can read our output about 9000 times per second. According to Nyquist's theorem, this meant that we could only accurately analyze up to 4.5 kHz. We utilized the “fix_fft.h” Arduino library to perform the Fourier analysis, which returns two arrays of 128 samples, one with real values and one with imaginary values. We then divided the first 64 samples into three sections (since the other 64 samples are beyond 4.5 kHz) and plotted the averages of the magnitudes of the samples in each section. This process resulted in our three-band spectrogram, which is displayed below.</p>
                                     <figure>
                                         <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Audio Amplifier/Spectrogram.png" alt="Image" />
-                                        <figcaption class="text-center"><i>Spectrogram Response to Different Frequencies Testing123</i></figcaption>
+                                        <figcaption class="text-center"><i>Spectrogram Response to Different Frequencies Testing1234</i></figcaption>
                                     </figure>
                                     <!-- Close Button -->
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
