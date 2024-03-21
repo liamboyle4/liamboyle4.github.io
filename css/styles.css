@@ -3766,6 +3766,13 @@ textarea.form-control-lg {
   align-items: center;
   justify-content: space-between;
 }
+
+#navbarContainer {
+  display: flex; /* Use flexbox for alignment */
+  justify-content: center; /* Horizontally center the content */
+  align-items: center; /* Vertically center the content */
+}
+
 .navbar-brand {
   padding-top: var(--bs-navbar-brand-padding-y);
   padding-bottom: var(--bs-navbar-brand-padding-y);
