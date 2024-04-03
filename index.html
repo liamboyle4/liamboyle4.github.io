@@ -71,7 +71,7 @@
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Projects</h2>
                 </div>
-                <div class="row">
+                <div class="row">                    
                     <!-- Projects item 1 (Audio Amplifier)-->
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <div class="portfolio-item">
@@ -88,14 +88,14 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Projects item 2 (WSP)-->
+                    <!-- Projects item 2 (WSP)>
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <div class="portfolio-item">
                             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="assets/img/about/1.jpg" alt="..." />
+                                <img class="img-fluid" src="assets/img/portfolio/WSP/cover.png" alt="..." />
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">WSP</div>
@@ -103,36 +103,36 @@
                                     To be completed</div>
                             </div>
                         </div>
-                    </div>
+                    </div-->
                     <!-- Projects item 3 (This Website)-->
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="assets/img/about/2.jpg" alt="..." />
+                                <img class="img-fluid" src="assets/img/portfolio/This Website/cover.png" alt="..." />
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">This Website!</div>
                                 <div class="portfolio-caption-subheading text-muted">
-                                    To be completed</div>
+                                    A Bootstrap-themed portfolio</div>
                             </div>
                         </div>
                     </div>
                     <!-- Projects item 4 (Delivery Robot)-->
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="assets/img/about/3.jpg" alt="..." />
+                                <img class="img-fluid" src="assets/img/portfolio/Delivery Robot/cover.png" alt="..." />
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Delivery Robot</div>
                                 <div class="portfolio-caption-subheading text-muted">
-                                    To be completed</div>
+                                    A prototype for a robot that delivers food across campus</div>
                             </div>
                         </div>
                     </div>
@@ -263,6 +263,71 @@
                                         <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Audio Amplifier/Spectrogram.png" alt="Image" />
                                         <figcaption class="text-center"><i>Spectrogram Response to Different Frequencies</i></figcaption>
                                     </figure>
+                                    <!-- Close Button -->
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-xmark me-1"></i>
+                                        Close Project
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Projects item 3 modal popup-->
+        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project details-->
+                                    <h2 class="text-uppercase">This Website!</h2>
+                                    <p class="item-intro text-muted">A Bootstrap-themed portfolio</p>
+                                    <p>I designed this website by starting with a free template from the Bootstrap website and personalizing it using HTML and JavaScript. This allowed me to not only get the website up faster, but also to utilize the Bootstrap framework for making the website more responsive, efficient, and visually pleasing. Once I finished designing the page, I hosted it on GitHub, as it is free and useful for hosting static webpages like this one.</p>
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/This Website/Bootstrap Templates.png" alt="Image"/>
+                                    <p>I was able to utilize some of the skills I picked up in earlier computer science courses, however this was my first time using Bootstrap and I learned some valuable skills from making this page. Overall, making this was a fun learning experience and I feel more comfortable designing websites by myself.</p>
+                                    <!-- Close Button -->
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-xmark me-1"></i>
+                                        Close Project
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Projects item 4 modal popup-->
+        <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project details-->
+                                    <h2 class="text-uppercase">Delivery Robot</h2>
+                                    <p class="item-intro text-muted">A prototype for a robot that delivers food across campus</p>
+                                    <p>This was one of my first college projects, and my team was tasked with designing a prototype for a robot that could deliver food from campus dining halls to the dorm buildings within a $60 budget. This idea is gaining popularity and can be seen at some colleges like the University of Kentucky and USC. </p>
+                                    <p>The team was made up of six people and was broken into three subteams, and my subteam was responsible for providing the electronics and software to control the robot wirelessly through Bluetooth. We opted to utilize an Arduino for handling computations and wireless communication and an L298N motor driver for motor control, since an Arduino alone couldn't deliver sufficient power to the motors. We also used an HC-06 Bluetooth module to act as the middleman between the Arduino and the device we were controlling the robot with. The entire system was powered by just one 9V battery.</p>
+                                    <div class="container">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Delivery Robot/CAD model.png" alt="Image" />
+                                            </div>
+                                            <div class="col">
+                                                <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Delivery Robot/Wiring.png" alt="Image" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>We programmed the Arduino to communicate with the driver’s four input ports depending on what the driving instruction was, which could be forward, backwards, left, right, or stop. We started with sending commands to the Arduino via a wired serial connection from a laptop, and once we got that working, we connected the Bluetooth module to the Arduino’s RX/TX pins. All that was left after that was to configure our chosen command characters to each control on a Bluetooth app, which can be seen below. Then we could simply connect the app to our Bluetooth module and send signals to the Arduino, which would control the motors.</p>
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Delivery Robot/Components.png" alt="Image" style="width: 50%"/>
                                     <!-- Close Button -->
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-xmark me-1"></i>
