@@ -57,7 +57,7 @@
                         <img class="img-fluid" src="assets/img/Skiing.JPG" alt="..." />
                     </div>
                     <div class="col">
-                        <img class="img-fluid" src="assets/img/Puerto Rico 2.JPG" alt="..." />
+                        <img class="img-fluid" src="assets/img/Megan.jpg" alt="..." />
                     </div>
                     <div class="col">
                         <img class="img-fluid" src="assets/img/Sagrada Famalia.jpg" alt="..." />
@@ -73,10 +73,26 @@
                     <h4>*Click to view more*</h2>
                 </div>
                 <div class="row">                    
-                    <!-- Projects item 1 (Audio Amplifier)-->
+                    <!-- Projects item 1 (ALU)-->
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <div class="portfolio-item">
                             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="assets/img/portfolio/Arithmetic Logic Unit/thumbnail.png" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Arithmetic Logic Unit</div>
+                                <div class="portfolio-caption-subheading text-muted">
+                                    A 45nm ALU with logical and arithmetic operations.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Projects item 2 (Audio Amplifier)-->
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
@@ -115,7 +131,7 @@
                                 <img class="img-fluid" src="assets/img/portfolio/This Website/cover.png" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">This Website!</div>
+                                <div class="portfolio-caption-heading">This Website</div>
                                 <div class="portfolio-caption-subheading text-muted">
                                     A Bootstrap-themed portfolio</div>
                             </div>
@@ -214,6 +230,56 @@
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project details-->
+                                    <h2 class="text-uppercase">Arithmetic Logic Unit</h2>
+                                    <p class="item-intro text-muted">A 45nm ALU with logical and arithmetic operations.</p>
+                                    <p>This was the final project of my VLSI class during my senior year. Our group was tasked with designing and simulating a simplified ALU using a 45nm process (FreePDK45) in Cadence. The ALU required a 4-bit multiplier, logical operations (AND, OR, XOR, NOT), and arithmetic operations (add, subtract, multiply), and was to be optimized for power, area, and delay. I was tasked with creating the multiplier and overall ALU schematics and layouts.</p>
+                                    <!-- Multiplier-->
+                                    <h3 class="my-3">Multiplier</h3>
+                                    <p>For the multiplier, I chose to use combinational logic which contained 3 4-bit adders and 16 AND gates. The 4-bit adders were ripple-carry adders, and we chose this over a faster architecture like a carry look-ahead adder because the trade-off between the reduced delay and increased area and power consumption was not worth it. The inputs to the adders are delayed by AND gates and other adders, so additional logic that reduces the time of the addition using the inputs would be inefficient.</p>
+                                    <figure>
+                                        <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Arithmetic Logic Unit/MULT Schematic.png" alt="Image" style="width: 100%;"/>
+                                        <figcaption class="text-center"><i>Multiplier Schematic</i></figcaption>
+                                    </figure>
+                                    <p>I designed the layout to be as space efficient as possible and to have the inputs and outputs be easily accessible. I also tried to keep the overall shape as square as possible, which is common practice in layout design to reduce area and help it fit in higher level layouts. The layout ended up being 13.98 um long and 13.16 um wide.</p>
+                                    <figure>
+                                        <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Arithmetic Logic Unit/MULT layout.png" alt="Image" style="width: 100%;"/>
+                                        <figcaption class="text-center"><i>Multiplier Layout</i></figcaption>
+                                    </figure>
+                                    <!-- ALU-->
+                                    <h3 class="my-3">ALU</h3>
+                                    <p>The ALU contained 4-bit AND/OR/XOR/NOT logic, my 4-bit multiplier, a 4-bit adder/subtractor, select logic which determines which operation the add/subtract unit will perform, and a control unit. The control unit is made up of four 8x1 multiplexers that determine which output to select based on 3 given select bits. Each of the 4-bit logic/arithmetic units have a 4-bit output except for the multiplier, which has an 8-bit output. To account for this, the first four bits of the ALU output were fed from the control unit output, and the last four bits were taken directly from the multiplier. The user would need to decide if the last four bits of the output were useful based on whether or not the multiply operation was chosen.</p>
+                                    <figure>
+                                        <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Arithmetic Logic Unit/ALU Schematic.png" alt="Image" />
+                                        <figcaption class="text-center"><i>ALU Schematic</i></figcaption>
+                                    </figure>
+                                    <p>The ALU layout contained many sub-units and required careful routing and positioning to keep the design compact. One way I did this was by splitting up the 4-bit logic units and instead grouping them by each bit. This meant that, for example, the 0th bit output logic of the AND, OR, NOT, and XOR  gates were grouped together and fed into the first multiplexer of the control unit. The layout ended up being 40.33 um long by 33.3 um wide, and from the post simulation results we determined the power consumption to be 140 uW and the critical-path propagation delay to be 750.02 ps.</p>
+                                    <figure>
+                                        <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Arithmetic Logic Unit/ALU layout.png" alt="Image" />
+                                        <figcaption class="text-center"><i>ALU Layout</i></figcaption>
+                                    </figure>
+                                    <p>Overall, I was happy with the design of our team’s ALU, but there were some improvements I would’ve liked to make if we had more time. One of those would’ve been adding flip-flops to the inputs and outputs to allow for state management through a clock. It also would’ve been nice to make the control unit and adder/subtractor layouts more square to reduce the area of the ALU layout. Depending on the use case, we also could’ve added additional logic that would set the 4 most significant bits to 0 if any operation other than multiply was selected, since multiply is the only operation with an 8-bit output.</p>
+                                    <!-- Close Button -->
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-xmark me-1"></i>
+                                        Close Project
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Projects item 2 modal popup-->
+        <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project details-->
                                     <h2 class="text-uppercase">Home Audio System</h2>
                                     <p class="item-intro text-muted">A graphic equalizer, class-D amplifier, and spectrogram working together to create audio adjustability.</p>
                                     <figure>
@@ -296,7 +362,7 @@
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project details-->
-                                    <h2 class="text-uppercase">This Website!</h2>
+                                    <h2 class="text-uppercase">This Website</h2>
                                     <p class="item-intro text-muted">A Bootstrap-themed portfolio</p>
                                     <p>I designed this website by starting with a free template from the Bootstrap website and personalizing it using HTML and JavaScript. This allowed me to not only get the website up faster, but also to utilize the Bootstrap framework for making the website more responsive, efficient, and visually pleasing. Once I finished designing the page, I hosted it on GitHub, as it is free and useful for hosting static webpages like this one.</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/This Website/Bootstrap Templates.png" alt="Image"/>
