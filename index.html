@@ -232,7 +232,7 @@
                                     <!-- Project details-->
                                     <h2 class="text-uppercase">Arithmetic Logic Unit</h2>
                                     <p class="item-intro text-muted">A 45nm ALU with logical and arithmetic operations.</p>
-                                    <p>This was the final project of my VLSI class during my senior year. Our group was tasked with designing and simulating a simplified ALU using a 45nm process (FreePDK45) in Cadence. The ALU required a 4-bit multiplier, logical operations (AND, OR, XOR, NOT), and arithmetic operations (add, subtract, multiply), and was to be optimized for power, area, and delay. I was tasked with creating the multiplier and overall ALU schematics and layouts.</p>
+                                    <p>This was the final project of my VLSI class during my senior year. Our group was tasked with designing and simulating a simplified ALU using a 45nm process (FreePDK45) in Cadence. The ALU required D flip-flops for state management, logical operations (AND, OR, XOR, NOT), and arithmetic operations (add, subtract, multiply), and was to be optimized for power, area, and delay. I was tasked with creating the multiplier, flip-flop, and overall ALU schematics and layouts.</p>
                                     <!-- Multiplier-->
                                     <h3 class="my-3">Multiplier</h3>
                                     <p>For the multiplier, I chose to use combinational logic which contained 3 4-bit adders and 16 AND gates. The 4-bit adders were ripple-carry adders, and we chose this over a faster architecture like a carry look-ahead adder because the trade-off between the reduced delay and increased area and power consumption was not worth it. The inputs to the adders are delayed by AND gates and other adders, so additional logic that reduces the time of the addition using the inputs would be inefficient.</p>
@@ -245,9 +245,26 @@
                                         <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Arithmetic Logic Unit/MULT layout.png" alt="Image" style="width: 100%;"/>
                                         <figcaption class="text-center"><i>Multiplier Layout</i></figcaption>
                                     </figure>
+                                    <!-- Pulsed D Flip-Flop-->
+                                    <h3 class="my-3">Pulsed D Flip-Flop</h3>
+                                    <p>In this flip-flop architecture, a pulse caused by a rising clock edge is connected to a single latch, and the output is able to switch during this short interval. The circuit consists of a pulse generator, a clocked CMOS latch, and a feedback loop. The advantage of this architecture is that it can achieve a negative setup time since the input can change up to around when the pulse starts, which happens after the clock’s rising edge. The drawback of this is that the input needs to stay steady for the duration of the pulse, which increases the hold time.</p>
+                                    <figure>
+                                        <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Arithmetic Logic Unit/FLIP FLOP schematic.png" alt="Image" style="width: 100%;"/>
+                                        <figcaption class="text-center"><i>Flip-flop Schematic</i></figcaption>
+                                    </figure>
+                                    <p>This flip-flop uses a pulse generator, which can be universally used with other flip-flops. The clock is fed into both inputs of a NAND gate, but one of the inputs is inverted and delayed allowing for a short pulse. The NAND gate’s inverted input is connected to the gate of a large transistor and therefore its gate-to-source capacitance, which increases the time delay and allows for the pulse.</p>
+                                    <figure>
+                                        <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Arithmetic Logic Unit/PULSE GEN schematic.png" alt="Image" style="width: 100%;"/>
+                                        <figcaption class="text-center"><i>Pulse Generator Schematic</i></figcaption>
+                                    </figure>
+                                    <p>The flip-flop layout was kept as square as possible to minimize area. The left half shows the pulse generator, the latch is shown on the top right, and the feedback loop to stabilize the output is on the bottom right. Clearly, the pulse generator takes up the majority of the area, but I was content with this tradeoff since one pulse generator could be used for multiple flip-flops.</p>
+                                    <figure>
+                                        <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Arithmetic Logic Unit/FLIP FLOP layout.png" alt="Image" style="width: 100%;"/>
+                                        <figcaption class="text-center"><i>Flip-flop Layout</i></figcaption>
+                                    </figure>
                                     <!-- ALU-->
                                     <h3 class="my-3">ALU</h3>
-                                    <p>The ALU contained 4-bit AND/OR/XOR/NOT logic, my 4-bit multiplier, a 4-bit adder/subtractor, select logic which determines which operation the add/subtract unit will perform, and a control unit. The control unit is made up of four 8x1 multiplexers that determine which output to select based on 3 given select bits. Each of the 4-bit logic/arithmetic units have a 4-bit output except for the multiplier, which has an 8-bit output. To account for this, the first four bits of the ALU output were fed from the control unit output, and the last four bits were taken directly from the multiplier. The user would need to decide if the last four bits of the output were useful based on whether or not the multiply operation was chosen.</p>
+                                    <p>The ALU contained 4-bit AND/OR/XOR/NOT logic, my 4-bit multiplier, a 4-bit adder/subtractor, select logic which determines which operation the add/subtract unit will perform, and a control unit. Unfortunately, there was not enough time to implement the flip-flops for state management. The control unit is made up of four 8x1 multiplexers that determine which output to select based on 3 given select bits. Each of the 4-bit logic/arithmetic units have a 4-bit output except for the multiplier, which has an 8-bit output. To account for this, the first four bits of the ALU output were fed from the control unit output, and the last four bits were taken directly from the multiplier. The user would need to decide if the last four bits of the output were useful based on whether or not the multiply operation was chosen.</p>
                                     <figure>
                                         <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Arithmetic Logic Unit/ALU Schematic.png" alt="Image" />
                                         <figcaption class="text-center"><i>ALU Schematic</i></figcaption>
