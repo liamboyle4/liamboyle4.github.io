@@ -80,6 +80,22 @@
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
+                                <img class="img-fluid" src="assets/img/portfolio/Communication Chips/thumbnail.png" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Transmitter/Receiver Pair PCBs</div>
+                                <div class="portfolio-caption-subheading text-muted">
+                                    Replacement of Deprecated Communication Chips with FPGAs.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Projects item 2 (ALU)-->
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
                                 <img class="img-fluid" src="assets/img/portfolio/Arithmetic Logic Unit/thumbnail.png" alt="..." />
                             </a>
                             <div class="portfolio-caption">
@@ -92,7 +108,7 @@
                     <!-- Projects item 2 (Audio Amplifier)-->
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
@@ -124,7 +140,7 @@
                     <!-- Projects item 3 (This Website)-->
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
@@ -140,7 +156,7 @@
                     <!-- Projects item 4 (Delivery Robot)-->
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
@@ -230,6 +246,71 @@
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project details-->
+                                    <h2 class="text-uppercase">Transmitter/Receiver Pair PCBs</h2>
+                                    <p class="item-intro text-muted">Replacement of Deprecated Communication Chips with FPGAs.</p>
+                                    <p>For my senior project, we worked with Framatome, an international leader in nuclear energy, to build a solution that replaces obsolete transmitter and receiver chips onboard their SUSI submarines. These chips are used for the submarine's camera controls, and our solution needed to fit seamlessly with their existing architecture. As a result, we decided to build PCBs that use FPGAs to emulate the transmitter/receiver functionality. My primary role was component selection for the PCB, designing and building the PCB, and some logic implementation in Verilog.</p>
+                                    <!-- Verilog Models-->
+                                    <h3 class="my-3">Verilog Models</h3>
+                                    <p>Both the transmitter and receiver FPGAs had their own Verilog model that emulated each chip's respective functionality and protocol. The transmitter contains a scanner unit that takes 8 parallel inputs and creates a 4-bit information unit for each input, following the original chips protocol. Next, it creates a 34-bit word with 2 start bits and the 8 concatenated information units and sends it to the transmitter's controller. This controller completes and serially outputs the full data word and uses a clock signal for timing and a reset signal for resetting the output.</p>
+                                    <figure>
+                                        <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Communication Chips/Transmitter Model.png" alt="Image" style="width: 110%;"/>
+                                        <figcaption class="text-center"><i>Low-Level Transmitter Model</i></figcaption>
+                                    </figure>
+                                    <p>The receiver design contains a controller that interprets incoming serial data according to the datasheet's format, loads the proper buffers to emulate the deprecated receiver chip, and validates data before delivering it to the output stage. Incoming data is first stored in an overflow buffer, which is compared with a second buffer four times to ensure consistency; if all comparisons succeed, the validated data is transferred to memory, then to the output buffer, and the corresponding parallel outputs are asserted for 120 ms. This process ensures the same data word is received four times in a row before being considered valid. Because each transmission takes 15 ms and validation requires four checks, the receiver must operate at four times the transmitter's frequency, and the transmitter's 8 or 16-bit parallel inputs must remain stable for at least 60 ms until the receiver completes validation.</p>
+                                    <figure>
+                                        <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Communication Chips/Receiver Model.png" alt="Image" style="width: 110%;" />
+                                        <figcaption class="text-center"><i>Low-Level Receiver Model</i></figcaption>
+                                    </figure>
+                                    <!-- PCB Design and Layout-->
+                                    <h3 class="my-3">PCB Design and Layout</h3>
+                                    <p>Our Verilog models were first tested on MAX10 development boards to ensure functionality and allow us to rapidly debug. Once our final solution was functional and the FPGAs could communicate with both another FPGA and the original chips, we began designing our PCBs, which would use MAXII FPGAs, similar to the MAX10. This portion of the project is where the majority of my efforts were.</p>
+                                    <p>The first step was to find the components necessary for the FPGA to operate on the board. This included an oscillator, voltage regulators, decoupling caps, a JTAG header, and level shifters. These components were selected based on the requirements specified on the MAXII datasheet. The MAXII contained internal flash memory, so external memory was not required. Next, additional peripherals like switches, LEDs, headers, and a USB connector were needed to allow the board to be powered and have inputs and outputs. The level shifters also allowed the PCBs to communicate with the original chips, despite their differing voltage requirements. The last step of the design was connecting and biasing each of the components based on their respective datasheet specifications and our Verilog design. Then, each of the FPGAs pins could be connected.</p>
+                                    <figure>
+                                        <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Communication Chips/PCB Power Supplies.jpg" alt="Image" style="width: 100%;" />
+                                        <figcaption class="text-center"><i>PCB Power Supplies Schematic</i></figcaption>
+                                    </figure>
+                                    <figure>
+                                        <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Communication Chips/PCB Supporting Components.jpg.png" alt="Image" style="width: 100%;" />
+                                        <figcaption class="text-center"><i>PCB Supporting Components Schematic</i></figcaption>
+                                    </figure>
+                                    <figure>
+                                        <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Communication Chips/PCB MAX II.jpg" alt="Image" style="width: 85%;" />
+                                        <figcaption class="text-center"><i>PCB MAXII Schematic</i></figcaption>
+                                    </figure>
+                                    <p>The PCBs were built on two-layer, 100mm x 100mm boards with a top-side assembly. This kept manufacturing cheap and quick and met our customer's size requirements since they planned on repackaging our design anyway. With the board being low power and having just two power supplies and no high-speed signals, we decided that two-layer boards would be sufficient.</p>
+                                    <figure>
+                                        <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Communication Chips/PCB Layouts.png" alt="Image" style="width: 90%;" />
+                                        <figcaption class="text-center"><i>Transmitter (left) and Receiver (right) PCB Layouts</i></figcaption>
+                                    </figure>
+                                    <!-- Final Solution-->
+                                    <h3 class="my-3">Final Solution</h3>
+                                    <p>The final solution successfully demonstrates full compatibility between the original SUSI chips and the custom transmitter and receiver PCBs. The transmitter PCB communicates seamlessly with both the original receiver chip and the receiver PCB, while the original transmitter chip reliably communicates with the receiver PCB. Communication is demonstrated by 16 LEDs either on the PCB or connected to the original receiver chip. In both cases, functionality is preserved, ensuring compatibility between legacy hardware and our modern replacement. Framatome will be able to adjust and modify the implementation as needed to better suit the requirements of the SUSI system.</p>
+                                    <figure>
+                                        <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Communication Chips/Final Demo.jpg" alt="Image" />
+                                        <figcaption class="text-center"><i>PCB Transmitter Communicating with Original and PCB Receivers (shown by LEDs)</i></figcaption>
+                                    </figure>
+                                    <!-- Close Button -->
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-xmark me-1"></i>
+                                        Close Project
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Projects item 3 modal popup-->
+        <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project details-->
                                     <h2 class="text-uppercase">Arithmetic Logic Unit</h2>
                                     <p class="item-intro text-muted">A 45nm ALU with logical and arithmetic operations.</p>
                                     <p>This was the final project of my VLSI class during my senior year. Our group was tasked with designing and simulating a simplified ALU using a 45nm process (FreePDK45) in Cadence. The ALU required D flip-flops for state management, logical operations (AND, OR, XOR, NOT), and arithmetic operations (add, subtract, multiply), and was to be optimized for power, area, and delay. I was tasked with creating the multiplier, flip-flop, and overall ALU schematics and layouts.</p>
@@ -287,8 +368,8 @@
                 </div>
             </div>
         </div>
-        <!-- Projects item 2 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+        <!-- Projects item 4 modal popup-->
+        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
@@ -369,8 +450,8 @@
                 </div>
             </div>
         </div>
-        <!-- Projects item 3 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+        <!-- Projects item 5 modal popup-->
+        <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
@@ -396,8 +477,8 @@
                 </div>
             </div>
         </div>
-        <!-- Projects item 4 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
+        <!-- Projects item 6 modal popup-->
+        <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
