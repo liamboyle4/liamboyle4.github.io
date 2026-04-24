@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Megan & Liam's Newport Getaway</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1b2e4b;
+            --ocean: #4a6fa5;
+            --sand: #f4f1ea;
+            --white: #ffffff;
+            --accent: #d4af37;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--sand);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        header {
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('welcome.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            margin: 0;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .date-badge {
+            background: var(--accent);
+            padding: 10px 20px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-top: 20px;
+            text-transform: uppercase;
+        }
+
+        /* Container */
+        .wrapper {
+            max-width: 1100px;
+            margin: -60px auto 100px auto;
+            position: relative;
+            z-index: 10;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 50px;
+            border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            margin-bottom: 60px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .intro h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--navy);
+        }
+
+        /* Schedule Sections */
+        .day-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--navy);
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .itinerary-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .itinerary-list li {
+            margin-bottom: 25px;
+            padding-left: 20px;
+            border-left: 3px solid var(--ocean);
+        }
+
+        .time {
+            font-weight: 600;
+            color: var(--accent);
+            display: block;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        .activity {
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: block;
+            margin: 5px 0;
+        }
+
+        .desc {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        /* Photo Galleries */
+        .photo-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .photo-strip img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+            transition: transform 0.3s;
+            border: 5px solid white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .photo-strip img:hover {
+            transform: translateY(-5px) rotate(2deg);
+        }
+
+        .large-photo {
+            width: 100%;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        /* Karaoke Special */
+        .karaoke-box {
+            background: #fffafa;
+            border: 2px dashed #e63946;
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .karaoke-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 20px auto;
+            border: 8px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px;
+            background: var(--navy);
+            color: white;
+        }
+
+        @media (max-width: 850px) {
+            .schedule-grid { grid-template-columns: 1fr; }
+            .card { padding: 30px; }
+            header { height: 60vh; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Megan & Liam's Newport Getaway</h1>
+        <div class="date-badge">May 28 – June 1, 2026</div>
+    </header>
+
+    <div class="wrapper">
+        
+        <div class="card">
+            <div class="intro">
+                <h2>Surprise!</h2>
+                <p>Pack your bags, because we're heading to the Ocean State! <br><strong>P.S. I already took Friday off work</strong>, so we have a full four-day weekend of doing absolutely nothing (and everything) together.</p>
+            </div>
+            <img src="house-front.png" alt="Our Newport Airbnb" class="large-photo">
+            <div class="photo-strip">
+                <img src="kitchen.png" alt="Kitchen">
+                <img src="living-room.png" alt="Living Room">
+                <img src="shower.png" alt="The Shower">
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="day-title">Thursday, May 28th</h2>
+            <div class="schedule-grid">
+                <ul class="itinerary-list">
+                    <li>
+                        <span class="time">Afternoon</span>
+                        <span class="activity">Escape the City</span>
+                        <span class="desc">Hitting the road from NYC to RI. Audiobooks and snacks mandatory.</span>
+                    </li>
+                    <li>
+                        <span class="time">Evening</span>
+                        <span class="activity">Cozy In</span>
+                        <span class="desc">Check-in, order some local takeout, and just relax in our new home for the weekend.</span>
+                    </li>
+                </ul>
+                <div>
+                    <img src="game-room.png" alt="Game Room" class="large-photo">
+                    <img src="game-room-2.png" alt="Game Room View" class="large-photo">
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="day-title">Friday, May 29th (Active Day)</h2>
+            <div class="schedule-grid">
+                <ul class="itinerary-list">
+                    <li>
+                        <span class="time">10:00 AM</span>
+                        <span class="activity">The Cliff Walk</span>
+                        <span class="desc">3.5 miles of ocean views and Gilded Age glamour.</span>
+                    </li>
+                    <li>
+                        <span class="time">12:30 PM</span>
+                        <span class="activity">Mansion Tour</span>
+                        <span class="desc">Peeking into how the Vanderbilts lived at The Breakers or Marble House.</span>
+                    </li>
+                    <li>
+                        <span class="time">2:00 PM</span>
+                        <span class="activity">Oyster Bar Lunch</span>
+                        <span class="desc">Heading to Midtown Oyster Bar or The Mooring for fresh seafood and drinks.</span>
+                    </li>
+                    <li>
+                        <span class="time">4:00 PM</span>
+                        <span class="activity">Thames Street Stroll</span>
+                        <span class="desc">Exploring the shops and docks along the waterfront.</span>
+                    </li>
+                </ul>
+                <div>
+                    <img src="cliff-walk.png" alt="Cliff Walk View" class="large-photo">
+                    <img src="newport-mansions.png" alt="The Mansions" class="large-photo">
+                </div>
+            </div>
+            
+            <div class="photo-strip">
+                <img src="town-we-are-staying-in.png" alt="Newport Town">
+                <img src="ice-cream-nearby.png" alt="Post-dinner Ice Cream">
+            </div>
+
+            <div class="karaoke-box">
+                <h3>🎤 The Main Event</h3>
+                <p>I heard a rumor that Newport has some legendary karaoke spots. Given your history as a vocal powerhouse, I'm expecting a 10/10 performance this Friday night. No pressure.</p>
+                <img src="karaoke.png" alt="Karaoke Star" class="karaoke-img">
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="day-title">Saturday, May 30th (Lazy Day)</h2>
+            <div class="schedule-grid">
+                <ul class="itinerary-list">
+                    <li>
+                        <span class="time">Morning</span>
+                        <span class="activity">Slow Start</span>
+                        <span class="desc">Sleeping in, coffee in the sunroom, and a late brunch in town (Corner Cafe or Cru Cafe).</span>
+                    </li>
+                    <li>
+                        <span class="time">Afternoon</span>
+                        <span class="activity">Beach or Vineyard</span>
+                        <span class="desc">Lazing at Second Beach OR heading to Greenvale Vineyards for a tasting with a view.</span>
+                    </li>
+                    <li>
+                        <span class="time">Golden Hour</span>
+                        <span class="activity">Brenton Point Sunset</span>
+                        <span class="desc">Watching the sun set over the Atlantic before heading home to cook.</span>
+                    </li>
+                    <li>
+                        <span class="time">Night</span>
+                        <span class="activity">Dinner & Movie</span>
+                        <span class="desc">Opening a nice bottle of wine, cooking together, and a movie marathon.</span>
+                    </li>
+                </ul>
+                <div>
+                    <img src="sunroom.png" alt="Sunroom" class="large-photo">
+                    <img src="sunroom-2.png" alt="Sunroom Interior" class="large-photo">
+                </div>
+            </div>
+            <div class="photo-strip">
+                <img src="hangout-at-second-beach.png" alt="Second Beach">
+                <img src="beach-nearby.png" alt="The Beach">
+                <img src="wine-at-greenvale-vineyards.png" alt="Greenvale Vineyards">
+                <img src="brenton-point-sunset.png" alt="Brenton Point">
+            </div>
+        </div>
+
+        <div class="card" style="text-align: center;">
+            <h2 class="day-title">Sunday, June 1st</h2>
+            <p>Clean up, one last brunch at <em>The White Horse Tavern</em> or <em>Castle Hill Inn</em>, and then we head home to catch Cate's party. </p>
+            <p><strong>Safe travels back to reality!</strong></p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 - Designed with love for Megan</p>
+    </footer>
+
+</body>
+</html>
